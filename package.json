@@ -1,0 +1,35 @@
+{
+  "name": "Victory",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "npm prune",
+    "postinstall" : "bower prune; bower install; grunt githooks"
+  },
+  "author" : "Joel Valdivia",
+  "license" : "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "git://github.com/joeldeval/victory.git"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "express-handlebars": "latest",
+    "lodash" : "latest",
+    "morgan": "~1.6.1",
+    "stylus" : "latest",
+    "nib" : "latest",
+    "js-yaml" : "latest"
+  },
+  "devDependencies" :{
+    "bower" : "latest",
+    "grunt" : "latest",
+    "grunt-contrib-jshint" : "latest",
+    "grunt-jscs" : "latest",
+    "grunt-githooks" : "latest",
+    "grunt-shell" : "latest"
+  }
+}
