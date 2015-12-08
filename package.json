@@ -31,5 +31,6 @@
     "grunt-jscs" : "latest",
     "grunt-githooks" : "latest",
     "grunt-shell" : "latest"
+    
   }
 }
