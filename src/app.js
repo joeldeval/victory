@@ -1,46 +1,48 @@
 'use strict';
-//Loading dependencies
+
+// Loading dependencies
 var express = require('express');
 var path = require('path');
 
-// Initalizing express application
+// Initializing express application
 var app = express();
 
-// Loading config
+// Loading Config
 var config = require('./lib/config');
-console.log('Configuration', config().views);
 
-//Body Parser
+// Body Parser
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
-//logger
+// Logger
 var logger = require('morgan');
 app.use(logger('dev'));
 
-//Cookies / Sesion
+// Cookies / Session
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
 // Layout setup
 var exphbs = require('express-handlebars');
 
-//Stylus setup
+// Stylus setup
 var stylus = require('stylus');
 var nib = require('nib');
 
-//Handlebars setup
+// Handlebars setup
 app.engine(config().views.engine, exphbs({
   extname: config().views.extension,
   defaultLayout: config().views.layout,
-  layoutDir: __dirname + '/views/layouts',
+  layoutsDir: __dirname + '/views/layouts',
   partialsDir: __dirname + '/views/partials'
-}))
+}));
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', '.hbs');
+app.set('view engine', config().views.engine);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
@@ -77,9 +79,8 @@ app.use(function(err, req, res, next) {
 });
 
 // Export application or start the server
-
-if(!!module.parent){
+if (!!module.parent) {
   module.exports = app;
-}else{
+} else {
   app.listen(config().serverPort);
 }
